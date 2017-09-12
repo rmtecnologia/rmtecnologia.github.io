@@ -7,20 +7,20 @@ const STATIC_CACHE_NAME = 'rm-tecnologia-static';
 console.log(`installing sw.js`);
 
 const CACHE_STATIC = [
-    '/images/logo.png',
-    '/images/logo-mid.png',
-    '/assets/main.scss',
-    '/images/icons/icon-logo-techqueria-128x128.png',
-    '/images/icons/icon-logo-techqueria-144x144.png',
-    '/images/icons/icon-logo-techqueria-152x152.png',
-    '/images/icons/icon-logo-techqueria-192x192.png',
-    '/images/icons/icon-logo-techqueria-256x256.png',
+    // '/images/logo.png',
+    // '/images/logo-mid.png',
+    '/assets/main.css',
+    // '/images/icons/icon-logo-techqueria-128x128.png',
+    // '/images/icons/icon-logo-techqueria-144x144.png',
+    // '/images/icons/icon-logo-techqueria-152x152.png',
+    // '/images/icons/icon-logo-techqueria-192x192.png',
+    // '/images/icons/icon-logo-techqueria-256x256.png',
  ];
 
  const CACHE_APP = [
     '/',
     '/index.html',
-    // '/about/',
+    '/about/',
     // '/contact/',
     // '/events/',
     // '/code-of-conduct/',
