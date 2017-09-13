@@ -1,6 +1,7 @@
 {
   "name": "RM Tecnologia",
   "short_name": "RM Tecnologia",
+  "description": "Landing page da RM Tecnologia",
   "icons": [{
     "src": "images/icons/logo-128.png",
       "sizes": "128x128",
