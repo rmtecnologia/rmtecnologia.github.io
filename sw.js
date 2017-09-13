@@ -10,11 +10,12 @@ const CACHE_STATIC = [
     // '/images/logo.png',
     // '/images/logo-mid.png',
     '/assets/main.css',
-    // '/images/icons/icon-logo-techqueria-128x128.png',
-    // '/images/icons/icon-logo-techqueria-144x144.png',
-    // '/images/icons/icon-logo-techqueria-152x152.png',
-    // '/images/icons/icon-logo-techqueria-192x192.png',
-    // '/images/icons/icon-logo-techqueria-256x256.png',
+    '/images/icons/logo-128.png',
+    '/images/icons/logo-144.png',
+    '/images/icons/logo-152.png',
+    '/images/icons/logo-192.png',
+    '/images/icons/logo-256.png',
+    '/images/icons/logo-512.png',
  ];
 
  const CACHE_APP = [
