@@ -21,7 +21,7 @@ const CACHE_STATIC = [
  const CACHE_APP = [
     '/',
     '/index.html',
-    '/about/',
+    // '/about/',
     // '/contact/',
     // '/events/',
     // '/code-of-conduct/',
