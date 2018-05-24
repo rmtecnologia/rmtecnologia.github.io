@@ -31,7 +31,8 @@
     "gulp-sass": "^4.0.1",
     "gulp-uglify-es": "^1.0.4",
     "pump": "^3.0.0",
-    "run-sequence": "^2.2.1"
+    "run-sequence": "^2.2.1",
+    "sw-precache": "^5.2.1"
   },
   "git": {
     "scripts": {

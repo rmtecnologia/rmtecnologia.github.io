@@ -1,5 +1,6 @@
 html, body {
-    background-color: #f9a821;
+    background-color: #424343;
+    color: #f9a821;
     height: 100%;
 }
 
@@ -33,7 +34,6 @@ body {
 }
 
 .message {
-    display: none;
     max-height: 50%;
     opacity: 1;
     -webkit-transition: opacity 500ms linear;
