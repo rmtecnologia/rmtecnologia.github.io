@@ -1,4 +1,5 @@
 window.onload = () => {
+    document.getElementById('welcome').style.display = 'initial';
     console.log('Carregado');
 }
 
