@@ -74,21 +74,21 @@ gulp.task("minify-js", function(cb) {
 
 gulp.task('generate-service-worker', function (callback) {
   var swPrecache = require('sw-precache');
-  var buildDir = 'build';
+  var srcDir = 'src';
 
-  swPrecache.write(`${buildDir}/service-worker.js`, {
-    staticFileGlobs: [buildDir + 'src/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'],
-    stripPrefix: buildDir
+  swPrecache.write(`build/service-worker.js`, {
+    staticFileGlobs: [srcDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'],
+    stripPrefix: srcDir
   }, callback);
 });
 
 gulp.task("pwaify", function(cb) {
-  console.log("========> Minificando JS...");
+  console.log("========> Copiando manifest.json...");
   pump(
     [
-      gulp.src("./sw.js"),
-      uglify(),
-      gulp.dest("./build"),
+      // gulp.src("./sw.js"),
+      // uglify(),
+      // gulp.dest("./build"),
       gulp.src("./manifest.json"),
       gulp.dest("./build")
     ],
@@ -122,7 +122,8 @@ gulp.task("build", function() {
     "minify-js",
     "minify-css",
     "copy-assets",
-    "generate-service-worker"
+    "pwaify",
+    "generate-service-worker",
   ]);
 });
 
