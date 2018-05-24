@@ -1,82 +1,61 @@
-const VERSION = "3.0.1";
+var files = [
+    'manifest.json',
+    'main.min.js',
+    'main.min.css',
+    'favicon.ico',
+    'img/icons/logo-128.png',
+    'img/icons/logo-144.png',
+    'img/icons/logo-256.png',
+    'img/icons/logo-512.png'
+];
+// dev only
+if (typeof files == 'undefined') {
+    var files = [];
+} else {
+    files.push('./');
+}
 
-// const cacheName = 'rm-tecnologia';
-const APP_CACHE_NAME = 'rm-tecnologia-app';
-const STATIC_CACHE_NAME = 'rm-tecnologia-static';
+var CACHE_NAME = 'rmtecnologia-v1';
 
-console.log(`installing sw.js`);
-
-const CACHE_STATIC = [
-    // '/images/logo.png',
-    // '/images/logo-mid.png',
-    '/assets/main.css',
-    // '/images/icons/logo-128.png',
-    // '/images/icons/logo-144.png',
-    // '/images/icons/logo-152.png',
-    // '/images/icons/logo-192.png',
-    // '/images/icons/logo-256.png',
-    // '/images/icons/logo-512.png',
- ];
-
- const CACHE_APP = [
-    '/',
-    // '/index.html',
-    // '/about/',
-    // '/contact/',
-    // '/events/',
-    // '/code-of-conduct/',
-    // '/merch/',
-    // '/welcome-to-slack/',
- ];
-
-self.addEventListener('install',function(e){
-    e.waitUntil(
-        Promise.all([
-            caches.open(STATIC_CACHE_NAME),
-            caches.open(APP_CACHE_NAME),
-            self.skipWaiting()
-          ]).then(function(storage){
-            var static_cache = storage[0];
-            var app_cache = storage[1];
-            return Promise.all([
-              static_cache.addAll(CACHE_STATIC),
-              app_cache.addAll(CACHE_APP)]);
+self.addEventListener('activate', function (event) {
+    console.log('[SW] Activate');
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.map(function (cacheName) {
+                    if (CACHE_NAME.indexOf(cacheName) == -1) {
+                        console.log('[SW] Delete cache:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
         })
     );
 });
 
-self.addEventListener('activate', function(e) {
-    e.waitUntil(
-        Promise.all([
-            self.clients.claim(),
-            caches.keys().then(function(cacheNames) {
-                return Promise.all(
-                    cacheNames.map(function(cacheName) {
-                        if (cacheName !== APP_CACHE_NAME && cacheName !== STATIC_CACHE_NAME) {
-                            console.log('deleting',cacheName);
-                            return caches.delete(cacheName);
-                        }
-                    })
-                );
-            })
-        ])
+self.addEventListener('install', function (event) {
+    console.log('[SW] Install');
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(function (cache) {
+            return Promise.all(
+                files.map(function (file) {
+                    return cache.add(file);
+                })
+            );
+        })
     );
 });
 
-this.addEventListener('fetch', function(event) {
-  var response;
-  event.respondWith(caches.match(event.request)
-    .then(function (match) {
-      return match || fetch(event.request);
-    }).catch(function() {
-      return fetch(event.request);
-    })
-    .then(function(r) {
-      response = r;
-      caches.open(cacheName).then(function(cache) {
-        cache.put(event.request, response);
-      });
-      return response.clone();
-    })
-  );
+self.addEventListener('fetch', function (event) {
+    console.log('[SW] fetch ' + event.request.url)
+    event.respondWith(
+        caches.match(event.request).then(function (response) {
+            return response || fetch(event.request.clone());
+        })
+    );
+});
+
+self.addEventListener('notificationclick', function (event) {
+    console.log('On notification click: ', event);
+    clients.openWindow('/');
 });
