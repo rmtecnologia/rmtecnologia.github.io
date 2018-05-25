@@ -100,7 +100,7 @@ gulp.task("minify-html", function(cb) {
   console.log("========> Minificando HTML...");
   pump(
     [
-      gulp.src("./src/*.html"),
+      gulp.src("./src/**/*.html"),
       htmlmin({ collapseWhitespace: true }),
       gulp.dest("./build")
     ],
