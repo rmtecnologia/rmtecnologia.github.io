@@ -26,6 +26,12 @@ body {
     justify-content: space-around;
 }
 
+.header h4 {
+    opacity: 0;
+    -webkit-transition: opacity 500ms linear;
+    transition: opacity 500ms linear;
+}
+
 .nav {
     height: 20%;
     padding: 0;
