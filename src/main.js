@@ -5,6 +5,12 @@ window.onload = () => {
         welcome.innerHTML = '';
         write(welcome, 'Somos a RM Tecnologia!');
     }, 3000);
+
+    const lnkAbout = document.getElementById('lnk-about')
+    lnkAbout.addEventListener('click', _ => {
+        document.getElementById('about').style.display = 'initial';
+        document.getElementById('welcome').style.display = 'none';
+    });
 }
 
 const write = (el, message) => {
