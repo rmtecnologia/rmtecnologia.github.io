@@ -47,7 +47,7 @@ const loadHTML = (page) => {
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('service-worker.js')
+        .register('sw.js')
         .then(function (reg) {
             console.log('Service worker Registered');
         })

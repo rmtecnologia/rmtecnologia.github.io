@@ -74,11 +74,11 @@ gulp.task("minify-js", function(cb) {
 
 gulp.task('generate-service-worker', function (callback) {
   var swPrecache = require('sw-precache');
-  var srcDir = 'src';
+  var dir = 'build';
 
-  swPrecache.write(`build/service-worker.js`, {
-    staticFileGlobs: [srcDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'],
-    stripPrefix: srcDir
+  swPrecache.write(`${dir}/sw.js`, {
+    staticFileGlobs: [`${dir}/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}`],
+    stripPrefix: dir
   }, callback);
 });
 
@@ -133,4 +133,4 @@ gulp.task("watch", function() {
   gulp.watch("./src/*.html", ["html", "minify-html"]);
 });
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('default', ['build', 'generate-service-worker', 'webserver', 'watch']);
